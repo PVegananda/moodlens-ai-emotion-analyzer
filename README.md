@@ -1,85 +1,122 @@
-# Final Project: Emotion Detector
+<div align="center">
+  <img src="assets/moodlens-mark.svg" alt="MoodLens logo" width="96">
+  <h1>MoodLens</h1>
+  <p>Understand the emotion behind every message.</p>
 
-**Project Name: Final Project**
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10 or newer"></a>
+  <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-3.0-000000?style=flat-square&logo=flask&logoColor=white" alt="Flask 3.0"></a>
+  <a href="https://www.ibm.com/watson"><img src="https://img.shields.io/badge/IBM%20Watson-NLP-1261FE?style=flat-square&logo=ibm&logoColor=white" alt="IBM Watson NLP"></a>
+  <a href="https://github.com/PVegananda/oaqjp-final-project-emb-ai/commits/main"><img src="https://img.shields.io/github/last-commit/PVegananda/oaqjp-final-project-emb-ai?style=flat-square" alt="Last commit"></a>
+  <a href="https://github.com/PVegananda/oaqjp-final-project-emb-ai"><img src="https://img.shields.io/github/repo-size/PVegananda/oaqjp-final-project-emb-ai?style=flat-square" alt="Repository size"></a>
+</div>
 
-A Flask-based emotion detection application using IBM Watson NLP to analyze sentiment and emotions from text input.
+## Overview
 
-## Features
+MoodLens is a lightweight Flask application that turns text into a clear emotional
+profile. It uses IBM Watson Natural Language Understanding to score anger, disgust,
+fear, joy, and sadness, then highlights the dominant emotion through a focused web
+experience and a JSON API.
 
-- Detects emotions from text using Watson NLP
-- Captures anger, disgust, fear, joy, and sadness emotions
-- Web interface for easy access
-- Comprehensive error handling
-- Unit test coverage
-- Production-ready code (pylint verified)
+The project is intentionally small, readable, and easy to extend. It is a practical
+example of connecting a Python web service to a natural-language intelligence API.
 
-## Installation
+## Highlights
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- A clean browser interface for quick emotion analysis
+- JSON API endpoint for integrating analysis into other applications
+- Consistent response format with five emotion scores and a dominant emotion
+- Health check endpoint for deployment monitoring
+- Input validation and explicit handling of upstream API errors
+- Unit tests for the analyzer's input and response behavior
 
-## Usage
+## Getting started
 
-**As a module:**
-```python
-from emotion_detection import emotion_detector
+### Requirements
 
-result = emotion_detector("I love this!")
-print(result)
-```
+- Python 3.10 or newer
+- An IBM Watson Natural Language Understanding instance
 
-**As a web service:**
+### Installation
+
 ```bash
-python server.py
+git clone https://github.com/PVegananda/oaqjp-final-project-emb-ai.git
+cd oaqjp-final-project-emb-ai
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
-Then visit `http://localhost:5000/` in your browser.
 
-## Project Structure
+Set `WATSON_NLP_URL` and `WATSON_AUTHORIZATION` in your environment before starting
+the application. Keep credentials out of source control.
 
-- `emotion_detection.py` - Core emotion detection logic
-- `__init__.py` - Package initialization
-- `server.py` - Flask web server
-- `test_emotion_detection.py` - Unit tests
-- `requirements.txt` - Python dependencies
+### Run locally
 
-## Testing
-
-Run the test suite:
 ```bash
-python -m pytest test_emotion_detection.py -v
+python app.py
 ```
 
-## Code Quality
+Open <http://localhost:5000> in your browser.
 
-Run pylint analysis:
+## API
+
+### `POST /emotions`
+
+Analyze text by sending a JSON body with the `textToAnalyze` field:
+
 ```bash
-pylint emotion_detection.py server.py
+curl -X POST http://localhost:5000/emotions \
+  -H "Content-Type: application/json" \
+  -d '{"textToAnalyze":"I am excited about the possibilities."}'
 ```
 
-## API Reference
+Example response:
 
-### emotion_detector(text_to_analyze)
-
-Analyzes emotions in the provided text.
-
-**Parameters:**
-- `text_to_analyze` (str): The text to analyze
-
-**Returns:**
-- Dictionary with emotion scores and dominant emotion if text is valid
-- Error status code if input is invalid
-
-**Example response:**
 ```json
 {
-  "anger": 0.0,
-  "disgust": 0.0,
-  "fear": 0.0,
-  "joy": 1.0,
-  "sadness": 0.0,
+  "anger": 0.001,
+  "disgust": 0.002,
+  "fear": 0.004,
+  "joy": 0.94,
+  "sadness": 0.003,
   "dominant_emotion": "joy"
 }
+```
+
+### `GET /health`
+
+Returns `{"status": "healthy"}` when the service is available.
+
+## Python usage
+
+```python
+from emotion_analyzer import emotion_detector
+
+result = emotion_detector("This is a wonderful day.")
+print(result["dominant_emotion"])
+```
+
+## Development
+
+Run the tests:
+
+```bash
+python -m pytest test_emotion_analyzer.py -v
+```
+
+Run static analysis:
+
+```bash
+pylint emotion_analyzer.py app.py
+```
+
+## Project layout
+
+```text
+.
+├── app.py                 # Flask routes and application entry point
+├── emotion_analyzer.py    # Watson NLP integration
+├── test_emotion_analyzer.py
+├── templates/index.html   # Browser interface
+├── assets/moodlens-mark.svg
+└── requirements.txt
 ```

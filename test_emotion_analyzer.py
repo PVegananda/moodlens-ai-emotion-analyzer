@@ -1,8 +1,6 @@
-"""
-Unit tests for emotion_detection module
-"""
+"""Unit tests for the MoodLens emotion analyzer."""
 import unittest
-from emotion_detection import emotion_detector
+from emotion_analyzer import emotion_detector
 
 
 class TestEmotionDetector(unittest.TestCase):

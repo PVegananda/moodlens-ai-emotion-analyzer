@@ -1,8 +1,6 @@
-"""
-Flask web server for Emotion Detector application
-"""
+"""Flask web application for MoodLens."""
 from flask import Flask, render_template, request, jsonify
-from emotion_detection import emotion_detector
+from emotion_analyzer import emotion_detector
 
 app = Flask(__name__)
 

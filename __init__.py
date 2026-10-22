@@ -1,8 +1,6 @@
-"""
-Emotion Detector Package
-"""
+"""MoodLens package."""
 # pylint: disable=invalid-name
-from emotion_detection import emotion_detector
+from emotion_analyzer import emotion_detector
 
 __all__ = ['emotion_detector']
 __version__ = '1.0.0'
