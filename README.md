@@ -6,8 +6,8 @@
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10 or newer"></a>
   <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-3.0-000000?style=flat-square&logo=flask&logoColor=white" alt="Flask 3.0"></a>
   <a href="https://www.ibm.com/watson"><img src="https://img.shields.io/badge/IBM%20Watson-NLP-1261FE?style=flat-square&logo=ibm&logoColor=white" alt="IBM Watson NLP"></a>
-  <a href="https://github.com/PVegananda/oaqjp-final-project-emb-ai/commits/main"><img src="https://img.shields.io/github/last-commit/PVegananda/oaqjp-final-project-emb-ai?style=flat-square" alt="Last commit"></a>
-  <a href="https://github.com/PVegananda/oaqjp-final-project-emb-ai"><img src="https://img.shields.io/github/repo-size/PVegananda/oaqjp-final-project-emb-ai?style=flat-square" alt="Repository size"></a>
+  <a href="https://github.com/PVegananda/moodlens-ai-emotion-analyzer/commits/main"><img src="https://img.shields.io/github/last-commit/PVegananda/moodlens-ai-emotion-analyzer?style=flat-square" alt="Last commit"></a>
+  <a href="https://github.com/PVegananda/moodlens-ai-emotion-analyzer"><img src="https://img.shields.io/github/repo-size/PVegananda/moodlens-ai-emotion-analyzer?style=flat-square" alt="Repository size"></a>
 </div>
 
 ## Overview
@@ -39,8 +39,8 @@ example of connecting a Python web service to a natural-language intelligence AP
 ### Installation
 
 ```bash
-git clone https://github.com/PVegananda/oaqjp-final-project-emb-ai.git
-cd oaqjp-final-project-emb-ai
+git clone https://github.com/PVegananda/moodlens-ai-emotion-analyzer.git
+cd moodlens-ai-emotion-analyzer
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
